@@ -12,6 +12,7 @@ const navigate=useNavigate()
 
 const [allCourses,setAllCourses]= useState([])
 const [isEducator,setIsEducator]= useState(true)
+const [enrolledCourses,setEnrolledCourses]= useState([])
 //Fetch All courss
 
 const fetchAllCourses = async()=>{
@@ -55,12 +56,22 @@ const calculateNoOfLectures=(course)=>{
   });
   return totalLectures;
 }
+
+//fetch enrolled courses
+
+
+const fetchUserEnrolledCourses = async()=>{
+  setEnrolledCourses(dummyCourses)
+}
 useEffect(()=>{
  fetchAllCourses()
+ fetchUserEnrolledCourses()
 },[])
 
     const value={
-        currency, allCourses,navigate, calculateRating,isEducator,setIsEducator,calculateNoOfLectures,calculateCourseDuration,calculateChapterTime
+        currency, allCourses,navigate, calculateRating,isEducator,
+        setIsEducator,calculateNoOfLectures,calculateCourseDuration,
+        calculateChapterTime,enrolledCourses,fetchUserEnrolledCourses
     }
 return(
     <AppContext.Provider value={value}>
